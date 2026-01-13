@@ -1,15 +1,16 @@
 --course table
-CREATE TABLE Course (
-    course_id NUMBER PRIMARY KEY,
-    course_name VARCHAR(50) NOT NULL
+CREATE TABLE course (
+    course_id INT PRIMARY KEY NOT NULL UNIQUE,
+    course_name VARCHAR(50)
 );
+
 
 --student table 
 CREATE TABLE Student (
-    student_id NUMBER PRIMARY KEY,
+    student_id INT PRIMARY KEY,
     student_name VARCHAR(50) NOT NULL,
     email VARCHAR(50) UNIQUE,
-    age NUMBER CHECK (age >= 18)
+    age INT CHECK (age >= 18)
 );
 
 -- enrollment table
@@ -34,7 +35,7 @@ INSERT INTO student VALUES (102, 'Ravi', 23);
 INSERT INTO enrollment VALUES (1, 101, 1);
 INSERT INTO enrollment VALUES (2, 102, 2);
 
---data updatate
+--data update
 UPDATE student
 SET age = 23
 WHERE student_id = 101;
