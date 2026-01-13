@@ -1,60 +1,63 @@
-
--- CREATE TABLE Books
-
-CREATE TABLE books (
-    book_id INT PRIMARY KEY,
-    title VARCHAR(100) NOT NULL,
-    author VARCHAR(100) NOT NULL,
-    available_copies INT CHECK (available_copies >= 0)
+--course table
+CREATE TABLE Course (
+    course_id NUMBER PRIMARY KEY,
+    course_name VARCHAR(50) NOT NULL
 );
 
--- CREATE TABLE Members
-CREATE TABLE members (
-    member_id INT PRIMARY KEY,
-    member_name VARCHAR(100) NOT NULL,
-    email VARCHAR(100) UNIQUE
+--student table 
+CREATE TABLE Student (
+    student_id NUMBER PRIMARY KEY,
+    student_name VARCHAR(50) NOT NULL,
+    email VARCHAR(50) UNIQUE,
+    age NUMBER CHECK (age >= 18)
 );
 
--- CREATE TABLE Book Issue
-CREATE TABLE book_issue (
-    issue_id INT PRIMARY KEY,
-    book_id INT REFERENCES books(book_id),
-    member_id INT REFERENCES members(member_id),
-    issue_date DATE,
-    return_date DATE
+-- enrollment table
+CREATE TABLE enrollment (
+    enroll_id INT PRIMARY KEY,
+    student_id INT,
+    course_id INT,
+    CONSTRAINT fk_student
+        FOREIGN KEY (student_id)
+        REFERENCES student(student_id),
+    CONSTRAINT fk_course
+        FOREIGN KEY (course_id)
+        REFERENCES course(course_id)
 );
 
--- INSERT SAMPLE DATA INTO BOOKS
-INSERT INTO books VALUES
-(1, 'DBMS Concepts', 'Silberschatz', 5),
-(2, 'Operating System', 'Galvin', 3);
 
--- INSERT SAMPLE DATA INTO MEMBERS
-INSERT INTO members VALUES
-(101, 'Amit Kumar', 'amit@gmail.com'),
-(102, 'Neha Sharma', 'neha@gmail.com');
+-- data insertion
+INSERT INTO course VALUES (1, 'Artificial Intelligence');
+INSERT INTO course VALUES (2, 'Data Science');
+INSERT INTO student VALUES (101, 'Ajay', 22);
+INSERT INTO student VALUES (102, 'Ravi', 23);
+INSERT INTO enrollment VALUES (1, 101, 1);
+INSERT INTO enrollment VALUES (2, 102, 2);
 
--- INSERT SAMPLE DATA INTO BOOK ISSUE
-INSERT INTO book_issue(issue_id,book_id,member_id,issue_date,
-return_date)
-VALUES
-(1001, 1, 101, '2025-01-10', NULL);
+--data updatate
+UPDATE student
+SET age = 23
+WHERE student_id = 101;
 
--- QUERY TO VIEW DATA
-SELECT * FROM books;
-SELECT * FROM book_issue;
+--data delete 
+DELETE FROM enrollment
+WHERE enroll_id = 2;
 
--- QUERY TO UPDATE AVAILABLE COPIES AFTER BOOK ISSUE
-UPDATE books
-SET available_copies = available_copies -1
-WHERE book_id = 1;
+-- new role created 
+CREATE ROLE report_user LOGIN PASSWORD 'report123';
 
--- QUERY TO GRANT ACCESS TO A USER
-GRANT SELECT, UPDATE ON books TO LIBRARIAN;
+-- grant 
+GRANT SELECT ON course TO report_user;
+GRANT SELECT ON student TO report_user;
+GRANT SELECT ON enrollment TO report_user;
+--add phone number
+ALTER TABLE student
+ADD COLUMN phone_no VARCHAR(15);
 
--- QUERY TO REVOKE ACCESS FROM A USER
-REVOKE UPDATE ON books FROM LIBRARIAN;
+-- revovke
+REVOKE ALL ON course FROM report_user;
+REVOKE ALL ON student FROM report_user;
+REVOKE ALL ON enrollment FROM report_user;
 
--- QUERY TO REMOVE OBSOLETE VALUES
-DELETE FROM book_issue 
-WHERE return_date IS NOT NULL AND return_date < '2025-01-01';
+--table drop
+DROP TABLE enrollment;
