@@ -7,6 +7,13 @@ To implement and analyze SQL SELECT queries using filtering, sorting, grouping, 
 
 ---
 
+## Software Requirements
+-	Operating System: Windows / Linux
+-	Database Management System: MySQL / Oracle / PostgreSQL
+-	SQL Interface: MySQL Workbench /Web Based / pgAdmin
+  
+---
+
 ## Objective
 - To study and implement SQL SELECT queries using PostgreSQL  
 - To retrieve required data by applying appropriate filtering conditions  
@@ -32,7 +39,7 @@ xi. Save the work and take screenshots of the executed queries and outputs for r
 
 ---
 
-## Input / Output Analysis
+## Practical / Experiment Steps
 
 ### Input
 
@@ -79,12 +86,39 @@ SELECT product, SUM(quantity * price) AS total_sales
 FROM orders
 GROUP BY product;
 
--- Products with total sales greater than 75000
-SELECT product, SUM(quantity * price) AS total_sales
+--Step 5 
+SELECT product, SUM(quantity*price) AS total_sales
 FROM orders
 GROUP BY product
-HAVING SUM(quantity * price) > 75000;
+HAVING SUM(quantity*price) > 75000;
+
+-- Step 6 Products with total sales greater than 75000
+SELECT product, SUM(quantity * price) AS total_sales
+FROM orders
+WHERE order_date >= '2025-01-01'
+GROUP BY product
+HAVING SUM(quantity * price) > 75000; 
+
 ```
+---
+
+## I/O Analysis (Input / Output)
+# Input
+-	Orders table creation query
+-	Sample records inserted into the Orders table using INSERT commands
+-	SELECT queries to display orders with high prices
+-	ORDER BY queries to sort records in ascending and descending order
+-	GROUP BY queries to calculate total sales per product
+-	HAVING clause queries to filter products based on total sales
+
+# Output
+-	Orders table created successfully
+-	Records inserted and stored correctly in the table
+-	High-priced orders displayed accurately based on the given condition
+-	Records sorted correctly by price and product
+-	Total sales calculated correctly for each product
+-	Products with total sales greater than the specified value displayed successfully
+
 OUTPUT:
 
 Table Created:
@@ -168,6 +202,15 @@ Total sales per product
 
 
 Products with total sales greater than 75000
+
+<img width="295" height="160" alt="image" src="https://github.com/user-attachments/assets/4b91dfee-d4c6-4cde-8a72-94690bf14c15" />
+
+
+
+
+
+
+Implementing Step 6 by applying WHERE and HAVING 
 
 <img width="295" height="160" alt="image" src="https://github.com/user-attachments/assets/4b91dfee-d4c6-4cde-8a72-94690bf14c15" />
 
