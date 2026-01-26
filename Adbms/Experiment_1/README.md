@@ -7,12 +7,31 @@ To design and implement a sample database system using DDL, DML, and DCL command
 
 ---
 
+## Software Requirements
+-	Operating System: Windows / Linux
+-	Database Management System: MySQL / Oracle / PostgreSQL
+-	SQL Interface: MySQL Workbench /Web Based / pgAdmin
+  
+---
+
 ## Objective
 To gain practical experience in implementing Data Definition Language (DDL), Data Manipulation Language (DML), and Data Control Language (DCL) operations in a real database environment, including the use of role-based privileges to secure data.
 
 ---
 
-## Input / Output Analysis
+## Procedure of the Experiment
+1.	Open pgAdmin and connect to the PostgreSQL server.
+2.	Create the Course table with appropriate primary key and NOT NULL constraints.
+3.	Create the Student table with primary key, UNIQUE, and CHECK constraints.
+4.	Create the Enrollment table with foreign key relationships to Student and Course tables.
+5.	Insert sample data into the Course, Student, and Enrollment tables.
+6.	Update records in the Student table and delete records from the Enrollment table.
+7.	Create a new role and grant SELECT privileges on the tables.
+8.	Alter the Student table to add a new column.
+9.	Revoke privileges from the role and drop the Enrollment table.
+
+
+## Practical / Experiment Steps
 
 ### Input
 
@@ -86,6 +105,24 @@ REVOKE ALL ON enrollment FROM report_user;
 -- Drop table
 DROP TABLE enrollment;
 ```
+## I/O Analysis (Input / Output)
+# Input
+- 	Course, Student, and Enrollment table creation queries
+- 	Records inserted into all tables using INSERT commands
+- UPDATE query to modify student details
+-	DELETE query to remove enrollment records
+-	Role creation and privilege assignment queries
+-	ALTER TABLE command to add a new column
+-	REVOKE and DROP TABLE commands
+# Output
+-	Course, Student, and Enrollment tables created successfully
+-	Records inserted, updated, and deleted correctly
+-	Referential integrity maintained between Student and Course tables
+-	Data retrieved and displayed correctly using SELECT queries
+-	Role-based access verified using GRANT and REVOKE operations
+-	Table structure modified successfully and Enrollment table dropped
+---
+
 OUTPUT:
 Access granted to new role:
 
