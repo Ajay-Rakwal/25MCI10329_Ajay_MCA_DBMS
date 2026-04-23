@@ -1,0 +1,67 @@
+{
+  "project_name": "Crime Management System",
+  "description": "A comprehensive database management project designed to help law enforcement agencies track and manage crime reports, witnesses, suspects, and evidence.",
+  "technologies": {
+    "language": "Python",
+    "gui_framework": "Tkinter",
+    "database": "MySQL",
+    "database_driver": "mysql-connector-python"
+  },
+  "core_features": [
+    {
+      "name": "Officer Authentication",
+      "description": "Secure login system for officers using email and password to access the dashboard."
+    },
+    {
+      "name": "Crime Dashboard",
+      "description": "Centralized view of all crimes with real-time searching by type or location."
+    },
+    {
+      "name": "Crime CRUD Operations",
+      "description": "Full ability to Add, Read, Update, and Delete crime records including location, date, and descriptions."
+    },
+    {
+      "name": "Witness Management",
+      "description": "Associate multiple witnesses with a single crime, storing their names and official statements."
+    },
+    {
+      "name": "Suspect Tracking",
+      "description": "Maintain a list of suspects for each crime with detailed physical descriptions."
+    },
+    {
+      "name": "Evidence Cataloging",
+      "description": "Log physical evidence with descriptions, where it was found, and the date it was recovered."
+    },
+    {
+      "name": "Data Integrity",
+      "description": "Uses foreign key constraints and cascaded deletes to ensure database consistency (e.g., deleting a crime removes associated evidence)."
+    }
+  ],
+  "file_architecture": [
+    {
+      "file": "main.py",
+      "role": "Entry point and GUI handling (Login window, Dashboard, Detail windows)."
+    },
+    {
+      "file": "db.py",
+      "role": "Centralized database configuration and connection management."
+    },
+    {
+      "file": "crime_crud_op.py",
+      "role": "Business logic and Data Access Layer containing all SQL queries."
+    },
+    {
+      "file": "user.py",
+      "role": "Auxiliary module for specialized user/officer tasks."
+    }
+  ],
+  "database_schema": {
+    "tables": [
+      "users",
+      "crimes",
+      "witnesses",
+      "suspects",
+      "crimeevidence"
+    ]
+  }
+}
